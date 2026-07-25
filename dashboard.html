@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>داشبورد مدیریت</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<!-- ══════════════════════════════════════
+     ICON STRIP  (ثابت — سمت راست)
+══════════════════════════════════════ -->
+<aside class="icon-strip">
+    <div class="logo-icon">P</div>
+
+    <a href="dashboard.html" class="strip-btn active" title="داشبورد"><i class="bi bi-speedometer2"></i></a>
+    <a href="analytics_dashboard.html" class="strip-btn" title="آنالیتیکس"><i class="bi bi-bar-chart-line"></i></a>
+    <a href="#" class="strip-btn" title="کاربران"><i class="bi bi-people"></i></a>
+    <a href="#" class="strip-btn" title="سفارشات"><i class="bi bi-bag-check"></i></a>
+    <a href="#" class="strip-btn" title="تقویم"><i class="bi bi-calendar3"></i></a>
+    <a href="#" class="strip-btn" title="پیام‌ها"><i class="bi bi-chat-left-dots"></i></a>
+    <a href="#" class="strip-btn" title="فایل‌ها"><i class="bi bi-folder2"></i></a>
+    <a href="#" class="strip-btn" title="کانبان"><i class="bi bi-kanban"></i></a>
+
+    <div class="strip-bottom">
+        <a href="#" class="strip-btn" title="تنظیمات"><i class="bi bi-gear"></i></a>
+        <a href="#" class="strip-btn" title="راهنما"><i class="bi bi-question-circle"></i></a>
+    </div>
+</aside>
+
+<!-- ══════════════════════════════════════
+     NAV PANEL  (سمت راست از icon-strip)
+══════════════════════════════════════ -->
+<nav class="nav-panel">
+    <div class="nav-panel-header">
+        <i class="bi bi-speedometer2" style="color:var(--accent)"></i>
+        داشبورد
+    </div>
+
+    <div class="nav-section-label">اصلی</div>
+    <a href="dashboard.html" class="nav-link-item active">
+        <i class="bi bi-house"></i> خانه
+        <span class="nav-badge">۵</span>
+    </a>
+    <a href="analytics_dashboard.html" class="nav-link-item"><i class="bi bi-graph-up-arrow"></i> آنالیز </a>
+    <a href="sales_dashboard.html" class="nav-link-item"><i class="bi bi-currency-dollar"></i>فروش </a>
+
+    <div class="nav-section-label">مدیریت</div>
+    <a href="#" class="nav-link-item"><i class="bi bi-people"></i> کاربران</a>
+    <a href="#" class="nav-link-item"><i class="bi bi-bag-check"></i> سفارشات</a>
+    <a href="#" class="nav-link-item"><i class="bi bi-box-seam"></i> محصولات</a>
+    <a href="#" class="nav-link-item"><i class="bi bi-truck"></i> ارسال</a>
+
+    <div class="nav-section-label">برنامه‌ها</div>
+    <a href="#" class="nav-link-item">
+        <i class="bi bi-chat-left-dots"></i> پیام‌ها
+        <span class="nav-badge">۱۲</span>
+    </a>
+    <a href="#" class="nav-link-item"><i class="bi bi-calendar3"></i> تقویم</a>
+    <a href="#" class="nav-link-item"><i class="bi bi-kanban"></i> کانبان</a>
+    <a href="#" class="nav-link-item"><i class="bi bi-folder2"></i> مدیریت فایل</a>
+
+    <div class="nav-section-label">سیستم</div>
+    <a href="#" class="nav-link-item"><i class="bi bi-gear"></i> تنظیمات</a>
+    <a href="#" class="nav-link-item"><i class="bi bi-shield-lock"></i> دسترسی‌ها</a>
+    <a href="#" class="nav-link-item"><i class="bi bi-box-arrow-left"></i> خروج</a>
+</nav>
+
+<!-- ══════════════════════════════════════
+     TOPBAR
+══════════════════════════════════════ -->
+<header class="topbar">
+    <div class="avatar" title="پروفایل">AK</div>
+    <span class="user-name">علی کریمی</span>
+    <div class="topbar-search">
+        <i class="bi bi-search"></i>
+        <input type="text" placeholder="جستجو کنید..." />
+    </div>
+
+    <div class="topbar-left">
+        <button class="icon-btn" id="darkToggle" title="حالت تاریک">
+            <i class="bi bi-moon"></i>
+        </button>
+        <button class="icon-btn" title="اعلان‌ها">
+            <i class="bi bi-bell"></i>
+            <span class="notif-dot"></span>
+        </button>
+        <button class="icon-btn" title="برنامه‌ها">
+            <i class="bi bi-grid"></i>
+        </button>
+        <div class="avatar" title="پروفایل">AK</div>
+    </div>
+</header>
+
+<!-- ══════════════════════════════════════
+     MAIN CONTENT
+══════════════════════════════════════ -->
+<main class="main">
+    <div class="content-area">
+
+        <!-- ── Page Header ── -->
+        <div class="page-header">
+            <div>
+                <h1 class="page-title">نمای کلی داشبورد</h1>
+                <div class="breadcrumb-bar">خانه / <span>داشبورد</span></div>
+            </div>
+            <button class="btn-orange">
+                <i class="bi bi-plus-lg"></i> گزارش جدید
+            </button>
+        </div>
+
+        <!-- ── STAT CARDS ── -->
+        <div class="row g-3 mb-4">
+
+            <div class="col-6 col-xl-3">
+                <div class="stat-card">
+                    <div class="icon-box" style="background:#FEF3E9;color:#F97316">
+                        <i class="bi bi-currency-dollar"></i>
+                    </div>
+                    <div class="stat-value">۸۴,۲۵۰$</div>
+                    <div class="stat-label">درآمد کل</div>
+                    <div class="stat-change up">
+                        <i class="bi bi-arrow-up-short"></i> +۱۲.۵٪ نسبت به ماه قبل
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 col-xl-3">
+                <div class="stat-card">
+                    <div class="icon-box" style="background:#EEF2FF;color:#6366F1">
+                        <i class="bi bi-bag-check"></i>
+                    </div>
+                    <div class="stat-value">۳,۸۴۲</div>
+                    <div class="stat-label">سفارشات کل</div>
+                    <div class="stat-change up">
+                        <i class="bi bi-arrow-up-short"></i> +۸.۱٪ نسبت به ماه قبل
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 col-xl-3">
+                <div class="stat-card">
+                    <div class="icon-box" style="background:#F0FDF4;color:#10B981">
+                        <i class="bi bi-people"></i>
+                    </div>
+                    <div class="stat-value">۱۲,۵۸۰</div>
+                    <div class="stat-label">کاربران فعال</div>
+                    <div class="stat-change up">
+                        <i class="bi bi-arrow-up-short"></i> +۴.۳٪ نسبت به ماه قبل
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 col-xl-3">
+                <div class="stat-card">
+                    <div class="icon-box" style="background:#FFF1F2;color:#EF4444">
+                        <i class="bi bi-x-circle"></i>
+                    </div>
+                    <div class="stat-value">۱,۲۴۰$</div>
+                    <div class="stat-label">بازگشت وجه</div>
+                    <div class="stat-change down">
+                        <i class="bi bi-arrow-down-short"></i> -۲.۴٪ نسبت به ماه قبل
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /stat cards -->
+
+        <!-- ── CHARTS ROW ── -->
+        <div class="row g-3 mb-4">
+
+            <!-- Revenue Chart -->
+            <div class="col-lg-8">
+                <div class="chart-card">
+                    <div class="card-header-row">
+                        <div>
+                            <p class="card-title">نمودار درآمد</p>
+                            <p class="card-subtitle">درآمد و هزینه ماهانه سال ۱۴۰۳</p>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button class="badge-pill active">سالانه</button>
+                            <button class="badge-pill">ماهانه</button>
+                            <button class="badge-pill">هفتگی</button>
+                        </div>
+                    </div>
+                    <canvas id="revenueChart" height="110"></canvas>
+                </div>
+            </div>
+
+            <!-- Donut Chart -->
+            <div class="col-lg-4">
+                <div class="chart-card">
+                    <div class="card-header-row">
+                        <div>
+                            <p class="card-title">تفکیک فروش</p>
+                            <p class="card-subtitle">بر اساس دسته‌بندی</p>
+                        </div>
+                    </div>
+                    <canvas id="donutChart" height="185"></canvas>
+                    <div class="mt-3">
+                        <div class="donut-legend-item">
+              <span class="legend-label">
+                <span class="legend-dot" style="background:#F97316"></span> الکترونیک
+              </span>
+                            <strong style="font-size:13px">۴۲٪</strong>
+                        </div>
+                        <div class="donut-legend-item">
+              <span class="legend-label">
+                <span class="legend-dot" style="background:#6366F1"></span> پوشاک
+              </span>
+                            <strong style="font-size:13px">۲۸٪</strong>
+                        </div>
+                        <div class="donut-legend-item">
+              <span class="legend-label">
+                <span class="legend-dot" style="background:#10B981"></span> کتاب
+              </span>
+                            <strong style="font-size:13px">۱۸٪</strong>
+                        </div>
+                        <div class="donut-legend-item">
+              <span class="legend-label">
+                <span class="legend-dot" style="background:#F59E0B"></span> سایر
+              </span>
+                            <strong style="font-size:13px">۱۲٪</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /charts row -->
+
+        <!-- ── TABLE + ACTIVITY ── -->
+        <div class="row g-3">
+
+            <!-- Recent Orders Table -->
+            <div class="col-lg-8">
+                <div class="table-card">
+                    <div class="card-header-row px-4 pt-4">
+                        <div>
+                            <p class="card-title">سفارشات اخیر</p>
+                            <p class="card-subtitle">آخرین ۵ تراکنش</p>
+                        </div>
+                        <a href="#" style="font-size:13px;color:var(--accent);font-weight:600;text-decoration:none">
+                            مشاهده همه
+                        </a>
+                    </div>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>شماره</th>
+                            <th>مشتری</th>
+                            <th>محصول</th>
+                            <th>مبلغ</th>
+                            <th>وضعیت</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><strong>#ORD-1041</strong></td>
+                            <td>
+                                <div class="user-cell">
+                                    <div class="user-avatar" style="background:#F97316">ع.ک</div>
+                                    <span>علی کریمی</span>
+                                </div>
+                            </td>
+                            <td>MacBook Pro 16"</td>
+                            <td><strong>$۲,۴۹۹</strong></td>
+                            <td><span class="status-badge status-success">تحویل‌شده</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>#ORD-1040</strong></td>
+                            <td>
+                                <div class="user-cell">
+                                    <div class="user-avatar" style="background:#6366F1">س.ن</div>
+                                    <span>سارا نظری</span>
+                                </div>
+                            </td>
+                            <td>iPhone 15 Pro</td>
+                            <td><strong>$۱,۱۹۹</strong></td>
+                            <td><span class="status-badge status-warning">در انتظار</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>#ORD-1039</strong></td>
+                            <td>
+                                <div class="user-cell">
+                                    <div class="user-avatar" style="background:#10B981">م.ر</div>
+                                    <span>محمد رضایی</span>
+                                </div>
+                            </td>
+                            <td>AirPods Max</td>
+                            <td><strong>$۵۴۹</strong></td>
+                            <td><span class="status-badge status-success">تحویل‌شده</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>#ORD-1038</strong></td>
+                            <td>
+                                <div class="user-cell">
+                                    <div class="user-avatar" style="background:#F59E0B">ف.ح</div>
+                                    <span>فاطمه حسینی</span>
+                                </div>
+                            </td>
+                            <td>iPad Air</td>
+                            <td><strong>$۷۹۹</strong></td>
+                            <td><span class="status-badge status-danger">لغو‌شده</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>#ORD-1037</strong></td>
+                            <td>
+                                <div class="user-cell">
+                                    <div class="user-avatar" style="background:#3B82F6">ر.غ</div>
+                                    <span>رضا قربانی</span>
+                                </div>
+                            </td>
+                            <td>Apple Watch S9</td>
+                            <td><strong>$۳۹۹</strong></td>
+                            <td><span class="status-badge status-info">در حمل</span></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div><!-- /table col -->
+
+            <!-- Activity + Progress -->
+            <div class="col-lg-4">
+
+                <!-- Team Activity -->
+                <div class="chart-card mb-3">
+                    <div class="card-header-row">
+                        <div>
+                            <p class="card-title">فعالیت تیم</p>
+                            <p class="card-subtitle">آخرین رویدادها</p>
+                        </div>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="activity-dot" style="background:#FEF3E9;color:#F97316">
+                            <i class="bi bi-bag-plus"></i>
+                        </div>
+                        <div>
+                            <div class="activity-text">
+                                <span class="activity-bold">علی کریمی</span> یک محصول جدید به انبار اضافه کرد.
+                            </div>
+                            <div class="activity-time">۲ دقیقه پیش</div>
+                        </div>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="activity-dot" style="background:#EEF2FF;color:#6366F1">
+                            <i class="bi bi-person-plus"></i>
+                        </div>
+                        <div>
+                            <div class="activity-text">
+                                <span class="activity-bold">سارا نظری</span> به عنوان مشتری جدید ثبت شد.
+                            </div>
+                            <div class="activity-time">۱۸ دقیقه پیش</div>
+                        </div>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="activity-dot" style="background:#F0FDF4;color:#10B981">
+                            <i class="bi bi-check-circle"></i>
+                        </div>
+                        <div>
+                            <div class="activity-text">
+                                سفارش <span class="activity-bold">#ORD-1041</span> تحویل داده شد.
+                            </div>
+                            <div class="activity-time">۴۵ دقیقه پیش</div>
+                        </div>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="activity-dot" style="background:#FFF1F2;color:#EF4444">
+                            <i class="bi bi-arrow-counterclockwise"></i>
+                        </div>
+                        <div>
+                            <div class="activity-text">
+                                درخواست استرداد <span class="activity-bold">#ORD-1038</span> تایید شد.
+                            </div>
+                            <div class="activity-time">۱ ساعت پیش</div>
+                        </div>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="activity-dot" style="background:#DBEAFE;color:#3B82F6">
+                            <i class="bi bi-graph-up"></i>
+                        </div>
+                        <div>
+                            <div class="activity-text">
+                                گزارش ماهانه فروش <span class="activity-bold">ارسال شد</span>.
+                            </div>
+                            <div class="activity-time">۳ ساعت پیش</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sales Targets Progress -->
+                <div class="chart-card">
+                    <div class="card-header-row">
+                        <div>
+                            <p class="card-title">اهداف فروش</p>
+                            <p class="card-subtitle">این فصل</p>
+                        </div>
+                    </div>
+
+                    <div class="progress-item">
+                        <div class="progress-meta">
+                            <span>الکترونیک</span>
+                            <span style="color:#F97316">۷۸٪</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" style="width:78%;background:#F97316"></div>
+                        </div>
+                    </div>
+
+                    <div class="progress-item">
+                        <div class="progress-meta">
+                            <span>پوشاک</span>
+                            <span style="color:#6366F1">۵۵٪</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" style="width:55%;background:#6366F1"></div>
+                        </div>
+                    </div>
+
+                    <div class="progress-item">
+                        <div class="progress-meta">
+                            <span>کتاب</span>
+                            <span style="color:#10B981">۹۰٪</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" style="width:90%;background:#10B981"></div>
+                        </div>
+                    </div>
+
+                    <div class="progress-item">
+                        <div class="progress-meta">
+                            <span>سایر</span>
+                            <span style="color:#F59E0B">۴۰٪</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" style="width:40%;background:#F59E0B"></div>
+                        </div>
+                    </div>
+
+                </div><!-- /progress card -->
+            </div><!-- /col -->
+
+        </div><!-- /table+activity row -->
+
+    </div><!-- /content-area -->
+</main>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
