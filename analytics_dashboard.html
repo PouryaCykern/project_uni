@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>داشبورد آنالیتیکس</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<!-- ══════════════════════════════════════
+     ICON STRIP  (ثابت — سمت راست)
+══════════════════════════════════════ -->
+<aside class="icon-strip">
+    <div class="logo-icon">P</div>
+
+    <a href="dashboard.html" class="strip-btn" title="داشبورد"><i class="bi bi-speedometer2"></i></a>
+    <a href="analytics_dashboard.html" class="strip-btn" title="آنالیتیکس"><i class="bi bi-bar-chart-line"></i></a>
+    <a href="#" class="strip-btn" title="کاربران"><i class="bi bi-people"></i></a>
+    <a href="#" class="strip-btn" title="سفارشات"><i class="bi bi-bag-check"></i></a>
+    <a href="#" class="strip-btn" title="تقویم"><i class="bi bi-calendar3"></i></a>
+    <a href="#" class="strip-btn" title="پیام‌ها"><i class="bi bi-chat-left-dots"></i></a>
+    <a href="#" class="strip-btn" title="فایل‌ها"><i class="bi bi-folder2"></i></a>
+    <a href="#" class="strip-btn" title="کانبان"><i class="bi bi-kanban"></i></a>
+
+    <div class="strip-bottom">
+        <a href="#" class="strip-btn" title="تنظیمات"><i class="bi bi-gear"></i></a>
+        <a href="#" class="strip-btn" title="راهنما"><i class="bi bi-question-circle"></i></a>
+    </div>
+</aside>
+
+<!-- ══════════════════════════════════════
+     NAV PANEL  (سمت راست از icon-strip)
+══════════════════════════════════════ -->
+<nav class="nav-panel">
+    <div class="nav-panel-header">
+        <i class="bi bi-speedometer2" style="color:var(--accent)"></i>
+        داشبورد
+    </div>
+
+    <div class="nav-section-label">اصلی</div>
+    <a href="dashboard.html" class="nav-link-item">
+        <i class="bi bi-house"></i> خانه
+        <span class="nav-badge">۵</span>
+    </a>
+    <a href="analytics_dashboard.html" class="nav-link-item active"><i class="bi bi-graph-up-arrow"></i> آنالیز </a>
+    <a href="sales_dashboard.html" class="nav-link-item"><i class="bi bi-currency-dollar"></i>فروش </a>
+
+    <div class="nav-section-label">مدیریت</div>
+    <a href="#" class="nav-link-item"><i class="bi bi-people"></i> کاربران</a>
+    <a href="#" class="nav-link-item"><i class="bi bi-bag-check"></i> سفارشات</a>
+    <a href="#" class="nav-link-item"><i class="bi bi-box-seam"></i> محصولات</a>
+    <a href="#" class="nav-link-item"><i class="bi bi-truck"></i> ارسال</a>
+
+    <div class="nav-section-label">برنامه‌ها</div>
+    <a href="#" class="nav-link-item">
+        <i class="bi bi-chat-left-dots"></i> پیام‌ها
+        <span class="nav-badge">۱۲</span>
+    </a>
+    <a href="#" class="nav-link-item"><i class="bi bi-calendar3"></i> تقویم</a>
+    <a href="#" class="nav-link-item"><i class="bi bi-kanban"></i> کانبان</a>
+    <a href="#" class="nav-link-item"><i class="bi bi-folder2"></i> مدیریت فایل</a>
+
+    <div class="nav-section-label">سیستم</div>
+    <a href="#" class="nav-link-item"><i class="bi bi-gear"></i> تنظیمات</a>
+    <a href="#" class="nav-link-item"><i class="bi bi-shield-lock"></i> دسترسی‌ها</a>
+    <a href="#" class="nav-link-item"><i class="bi bi-box-arrow-left"></i> خروج</a>
+</nav>
+
+<!-- ══════════════════════════════════════
+     TOPBAR
+══════════════════════════════════════ -->
+<header class="topbar">
+    <div class="avatar" title="پروفایل">AK</div>
+    <span class="user-name">علی کریمی</span>
+    <div class="topbar-search">
+        <i class="bi bi-search"></i>
+        <input type="text" placeholder="جستجو کنید..." />
+    </div>
+
+    <div class="topbar-left">
+        <button class="icon-btn" id="darkToggle" title="حالت تاریک">
+            <i class="bi bi-moon"></i>
+        </button>
+        <button class="icon-btn" title="اعلان‌ها">
+            <i class="bi bi-bell"></i>
+            <span class="notif-dot"></span>
+        </button>
+        <button class="icon-btn" title="برنامه‌ها">
+            <i class="bi bi-grid"></i>
+        </button>
+        <div class="avatar" title="پروفایل">AK</div>
+    </div>
+</header>
+
+<!-- ══════════════════════════════════════
+     MAIN CONTENT
+══════════════════════════════════════ -->
+<main class="main">
+    <div class="content-area">
+
+        <!-- ── Page Header ── -->
+        <div class="page-header">
+            <div>
+                <h1 class="page-title">داشبورد آنالیتیکس</h1>
+                <div class="breadcrumb-bar">خانه / <span>آنالیتیکس</span></div>
+            </div>
+            <button class="btn-orange">
+                <i class="bi bi-download"></i> دانلود گزارش
+            </button>
+        </div>
+
+        <!-- ── STAT CARDS ── -->
+        <div class="row g-3 mb-4">
+
+            <div class="col-6 col-xl-3">
+                <div class="stat-card">
+                    <div class="icon-box" style="background:#FEF3E9;color:#F97316">
+                        <i class="bi bi-people"></i>
+                    </div>
+                    <div class="stat-value">۲۴۸,۵۳۲</div>
+                    <div class="stat-label">مجموع بازدیدکنندگان</div>
+                    <div class="stat-change up">
+                        <i class="bi bi-arrow-up-short"></i> ۲۴.۵٪ نسبت به ماه قبل
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 col-xl-3">
+                <div class="stat-card">
+                    <div class="icon-box" style="background:#F0FDF4;color:#10B981">
+                        <i class="bi bi-eye"></i>
+                    </div>
+                    <div class="stat-value">۱.۲M</div>
+                    <div class="stat-label">بازدید صفحات</div>
+                    <div class="stat-change up">
+                        <i class="bi bi-arrow-up-short"></i> ۱۸.۳٪ نسبت به ماه قبل
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 col-xl-3">
+                <div class="stat-card">
+                    <div class="icon-box" style="background:#FFFBEB;color:#D97706">
+                        <i class="bi bi-box-arrow-in-left"></i>
+                    </div>
+                    <div class="stat-value">۳۲.۴٪</div>
+                    <div class="stat-label">نرخ خروج</div>
+                    <div class="stat-change up">
+                        <i class="bi bi-arrow-down-short"></i> ۵.۲٪ نسبت به ماه قبل
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 col-xl-3">
+                <div class="stat-card">
+                    <div class="icon-box" style="background:#ECFEFF;color:#0891B2">
+                        <i class="bi bi-clock-history"></i>
+                    </div>
+                    <div class="stat-value">۴:۳۲</div>
+                    <div class="stat-label">میانگین مدت نشست</div>
+                    <div class="stat-change up">
+                        <i class="bi bi-arrow-up-short"></i> ۱۲.۱٪ نسبت به ماه قبل
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /stat cards -->
+
+        <!-- ── CHARTS ROW ── -->
+        <div class="row g-3 mb-4">
+
+            <!-- Traffic Overview Chart -->
+            <div class="col-lg-8">
+                <div class="chart-card">
+                    <div class="card-header-row">
+                        <p class="card-title">نمای کلی ترافیک</p>
+                        <div class="d-flex gap-2">
+                            <button class="badge-pill active">روزانه</button>
+                            <button class="badge-pill">هفتگی</button>
+                            <button class="badge-pill">ماهانه</button>
+                        </div>
+                    </div>
+                    <canvas id="trafficOverviewChart" height="90"></canvas>
+                </div>
+            </div>
+
+            <!-- Traffic Sources Donut -->
+            <div class="col-lg-4">
+                <div class="chart-card">
+                    <div class="card-header-row">
+                        <p class="card-title">منابع ترافیک</p>
+                    </div>
+                    <canvas id="trafficSourceDonutChart" height="170"></canvas>
+
+                    <div class="mt-2">
+                        <div class="source-item">
+                            <div class="source-icon" style="background:#FEF3E9;color:#F97316"><i class="bi bi-google"></i></div>
+                            <div>
+                                <div class="source-title">جستجوی ارگانیک</div>
+                                <div class="source-sub">۱۲۴,۵۳۲ بازدیدکننده</div>
+                            </div>
+                            <div class="source-pct">۴۵.۲٪</div>
+                        </div>
+                        <div class="source-item">
+                            <div class="source-icon" style="background:#F0FDF4;color:#10B981"><i class="bi bi-link-45deg"></i></div>
+                            <div>
+                                <div class="source-title">مستقیم</div>
+                                <div class="source-sub">۶۸,۴۲۱ بازدیدکننده</div>
+                            </div>
+                            <div class="source-pct">۲۴.۸٪</div>
+                        </div>
+                        <div class="source-item">
+                            <div class="source-icon" style="background:#FFFBEB;color:#D97706"><i class="bi bi-share"></i></div>
+                            <div>
+                                <div class="source-title">شبکه‌های اجتماعی</div>
+                                <div class="source-sub">۴۲,۱۵۶ بازدیدکننده</div>
+                            </div>
+                            <div class="source-pct">۱۵.۳٪</div>
+                        </div>
+                        <div class="source-item">
+                            <div class="source-icon" style="background:#ECFEFF;color:#0891B2"><i class="bi bi-megaphone"></i></div>
+                            <div>
+                                <div class="source-title">ارجاعی</div>
+                                <div class="source-sub">۲۸,۹۲۳ بازدیدکننده</div>
+                            </div>
+                            <div class="source-pct">۱۰.۵٪</div>
+                        </div>
+                        <div class="source-item">
+                            <div class="source-icon" style="background:#FEF2F2;color:#EF4444"><i class="bi bi-envelope"></i></div>
+                            <div>
+                                <div class="source-title">ایمیل</div>
+                                <div class="source-sub">۱۱,۵۰۰ بازدیدکننده</div>
+                            </div>
+                            <div class="source-pct" style="color:var(--muted)">۴.۲٪</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /charts row -->
+
+        <!-- ── TABLE + SIDEBAR ROW ── -->
+        <div class="row g-3 mb-4">
+
+            <!-- Top Pages Table -->
+            <div class="col-lg-8">
+                <div class="table-card">
+                    <div class="card-header-row" style="padding:18px 18px 0">
+                        <p class="card-title">صفحات پربازدید</p>
+                        <button class="badge-pill" style="background:transparent;color:var(--accent);border:1px solid var(--accent)">مشاهده همه</button>
+                    </div>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>صفحه</th>
+                            <th>بازدید</th>
+                            <th>یکتا</th>
+                            <th>نرخ خروج</th>
+                            <th>میانگین زمان</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>
+                                <div class="user-cell">
+                                    <div class="user-avatar" style="background:#F97316"><i class="bi bi-house"></i></div>
+                                    <div>
+                                        <div>‏/home‏</div>
+                                        <div style="font-size:11px;color:var(--muted)">صفحه اصلی</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>۱۴۲,۵۸۲</td>
+                            <td>۹۸,۴۲۱</td>
+                            <td>۲۸.۴٪</td>
+                            <td>۳:۴۲</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="user-cell">
+                                    <div class="user-avatar" style="background:#6366F1"><i class="bi bi-box-seam"></i></div>
+                                    <div>
+                                        <div>‏/products‏</div>
+                                        <div style="font-size:11px;color:var(--muted)">کاتالوگ محصولات</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>۸۹,۲۳۴</td>
+                            <td>۶۷,۸۹۲</td>
+                            <td>۳۵.۱٪</td>
+                            <td>۵:۱۸</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="user-cell">
+                                    <div class="user-avatar" style="background:#10B981"><i class="bi bi-info-circle"></i></div>
+                                    <div>
+                                        <div>‏/about‏</div>
+                                        <div style="font-size:11px;color:var(--muted)">درباره ما</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>۴۵,۱۲۸</td>
+                            <td>۳۸,۴۲۱</td>
+                            <td>۴۲.۳٪</td>
+                            <td>۲:۱۵</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="user-cell">
+                                    <div class="user-avatar" style="background:#F59E0B"><i class="bi bi-file-earmark-text"></i></div>
+                                    <div>
+                                        <div>‏/blog‏</div>
+                                        <div style="font-size:11px;color:var(--muted)">مطالب وبلاگ</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>۳۸,۹۲۱</td>
+                            <td>۲۸,۱۵۶</td>
+                            <td>۲۵.۸٪</td>
+                            <td>۶:۴۵</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="user-cell">
+                                    <div class="user-avatar" style="background:#EF4444"><i class="bi bi-envelope"></i></div>
+                                    <div>
+                                        <div>‏/contact‏</div>
+                                        <div style="font-size:11px;color:var(--muted)">تماس با ما</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>۲۴,۵۶۷</td>
+                            <td>۲۱,۲۳۴</td>
+                            <td>۱۸.۲٪</td>
+                            <td>۱:۵۲</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div><!-- /table col -->
+
+            <!-- Device + Browser -->
+            <div class="col-lg-4">
+
+                <!-- Device Breakdown -->
+                <div class="chart-card mb-3">
+                    <div class="card-header-row">
+                        <p class="card-title">توزیع دستگاه‌ها</p>
+                    </div>
+
+                    <div class="device-item">
+                        <div class="device-meta">
+                            <span class="device-label"><i class="bi bi-display" style="color:#F97316"></i> دسکتاپ</span>
+                            <span style="color:#F97316">۵۸٪</span>
+                        </div>
+                        <div class="progress"><div class="progress-bar" style="width:58%;background:#F97316"></div></div>
+                        <div style="font-size:11px;color:var(--muted);margin-top:4px">۱۴۴,۱۴۸ بازدیدکننده</div>
+                    </div>
+
+                    <div class="device-item">
+                        <div class="device-meta">
+                            <span class="device-label"><i class="bi bi-phone" style="color:#10B981"></i> موبایل</span>
+                            <span style="color:#10B981">۳۴٪</span>
+                        </div>
+                        <div class="progress"><div class="progress-bar" style="width:34%;background:#10B981"></div></div>
+                        <div style="font-size:11px;color:var(--muted);margin-top:4px">۸۴,۵۰۰ بازدیدکننده</div>
+                    </div>
+
+                    <div class="device-item">
+                        <div class="device-meta">
+                            <span class="device-label"><i class="bi bi-tablet" style="color:#F59E0B"></i> تبلت</span>
+                            <span style="color:#F59E0B">۸٪</span>
+                        </div>
+                        <div class="progress"><div class="progress-bar" style="width:8%;background:#F59E0B"></div></div>
+                        <div style="font-size:11px;color:var(--muted);margin-top:4px">۱۹,۸۸۴ بازدیدکننده</div>
+                    </div>
+                </div>
+
+                <!-- Browser Stats -->
+                <div class="chart-card">
+                    <div class="card-header-row">
+                        <p class="card-title">آمار مرورگرها</p>
+                    </div>
+
+                    <div class="browser-item">
+                        <span class="browser-icon">🌐</span>
+                        <span class="browser-name">کروم</span>
+                        <span class="browser-change up">۲.۳٪ ↑</span>
+                        <span class="browser-pct">۶۴.۸٪</span>
+                    </div>
+                    <div class="browser-item">
+                        <span class="browser-icon">🧭</span>
+                        <span class="browser-name">سافاری</span>
+                        <span class="browser-change up">۱.۱٪ ↑</span>
+                        <span class="browser-pct">۱۸.۲٪</span>
+                    </div>
+                    <div class="browser-item">
+                        <span class="browser-icon">🦊</span>
+                        <span class="browser-name">فایرفاکس</span>
+                        <span class="browser-change down">۰.۸٪ ↓</span>
+                        <span class="browser-pct">۸.۴٪</span>
+                    </div>
+                    <div class="browser-item">
+                        <span class="browser-icon">🌊</span>
+                        <span class="browser-name">اج</span>
+                        <span class="browser-change up">۰.۵٪ ↑</span>
+                        <span class="browser-pct">۵.۸٪</span>
+                    </div>
+                    <div class="browser-item">
+                        <span class="browser-icon">🔘</span>
+                        <span class="browser-name">سایر</span>
+                        <span class="browser-change flat">۰٪</span>
+                        <span class="browser-pct">۲.۸٪</span>
+                    </div>
+                </div><!-- /browser -->
+            </div><!-- /col -->
+
+        </div><!-- /table+sidebar row -->
+
+        <!-- ── REAL-TIME VISITORS ── -->
+        <div class="chart-card">
+            <div class="realtime-header">
+                <div class="realtime-title">
+                    <span class="live-dot"></span> بازدیدکنندگان لحظه‌ای
+                </div>
+                <div style="font-size:12px;color:var(--muted)">آخرین به‌روزرسانی: همین الان</div>
+            </div>
+
+            <div class="row g-3 mb-3">
+                <div class="col-6 col-md-3">
+                    <div class="realtime-stat">
+                        <div class="rt-value">۸۴۷</div>
+                        <div class="rt-label">کاربران فعال</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="realtime-stat">
+                        <div class="rt-value">۲,۳۴۱</div>
+                        <div class="rt-label">بازدید صفحه (ساعت اخیر)</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="realtime-stat">
+                        <div class="rt-value">۱۲</div>
+                        <div class="rt-label">نشست‌های فعال</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="realtime-stat">
+                        <div class="rt-value">۳:۲۴</div>
+                        <div class="rt-label">میانگین زمان حضور</div>
+                    </div>
+                </div>
+            </div>
+
+            <canvas id="realtimeChart" height="60"></canvas>
+        </div>
+
+    </div><!-- /content-area -->
+</main>
+
+<script src="assets/js/analytics.js"></script>
+</body>
+</html>
